@@ -1,0 +1,14 @@
+.auth {
+  display: flex;
+  justify-content: space-evenly;
+  > div {
+    width: 100%;
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    &.divider {
+      display: none;
+    }
+  }
+}
