@@ -1,6 +1,14 @@
-body {
-  width: 100vw;
-  height: 100vh;
+:root {
+  --bg: #0c0c0c;
+  --main: #481e14;
+  --a1: #9b3922;
+  --a2: #f2613f;
+  --text: white;
+  --ts: #00000063;
+}
+* {
   margin: 0;
   padding: 0;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }

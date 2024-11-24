@@ -1,0 +1,64 @@
+.nav {
+  .navButton {
+    color: white;
+    position: relative;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    width: 3.5rem;
+    align-items: center;
+
+    .box {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 3.5rem;
+      height: 3.5rem;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.074);
+      border: 1px solid rgba(255, 255, 255, 0.222);
+      border-radius: 20px;
+      transition: all ease 0.3s;
+      font-size: 1.5rem;
+      color: #564534;
+      position: relative;
+      align-items: center;
+
+      i {
+        transition: all ease 0.3s;
+      }
+
+      &.hoveredNav {
+        box-shadow: 0px 0px 20px 1px #ffbb763f;
+        border: 1px solid rgba(255, 255, 255, 0.454);
+
+        i {
+          transform: rotate(5deg);
+        }
+      }
+    }
+
+    .title {
+      transition: all ease 0.3s;
+      opacity: 0%;
+      font-size: 1rem;
+      font-weight: 900;
+      color: #564534;
+    }
+
+    &:hover {
+      .box {
+        box-shadow: 0px 0px 20px 1px #ffbb763f;
+        border: 1px solid rgba(255, 255, 255, 0.454);
+
+        i {
+          transform: rotate(5deg);
+        }
+      }
+      .title {
+        opacity: 100%;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}

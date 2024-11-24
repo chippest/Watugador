@@ -11,7 +11,7 @@ export function Home() {
     </>
   ) : (
     <>
-      <Navigate to={"/auth"} replace={true} />
+      <Navigate to={"/login"} replace={true} />
     </>
   );
 }
