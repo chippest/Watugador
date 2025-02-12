@@ -115,6 +115,23 @@
       overflow: hidden;
       transition: 0.2s all;
 
+      &.btnDis {
+        pointer-events: none;
+
+        &::before {
+          transform: translate3d(100%, 0, 0);
+        }
+        box-shadow: 0 0 5px black, 0 0 25px #564534, 0 0 50px #564534,
+          0 0 100px #564534;
+        background: linear-gradient(
+          90deg,
+          #ff6464 0%,
+          #564534 50%,
+          #342e27 100%
+        );
+        transform: scale(0.95);
+      }
+
       span {
         position: relative;
         z-index: 10;

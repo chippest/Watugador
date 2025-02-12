@@ -2,11 +2,15 @@ import { useNavigate } from "react-router-dom";
 import { useApp } from "../contexts/AppContext";
 import "./css/nav.css";
 import { useEffect } from "react";
+import { signOut } from "firebase/auth";
+import { auth } from "../lib/firebase";
 
 export function Nav() {
   const {
     loggedIn,
     setLoggedIn,
+    currentUser,
+    setCurrentUser,
     currentPage,
     setCurrentPage,
     changingPage,
@@ -34,6 +38,19 @@ export function Nav() {
       navigate("login");
     }
   }, [loggedIn]);
+
+  const handleSignOut = async (e) => {
+    e.preventDefault();
+    try {
+      await signOut(auth);
+      console.log(auth.currentUser?.email);
+      setCurrentUser(null);
+      handleNavButtonClick("login");
+      setLoggedIn(false);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -97,12 +114,14 @@ export function Nav() {
             </div>
           </>
         )}
-        <div class="navButton">
-          <button className="box signOutBtn">
-            <i class="fa-duotone fa-solid fa-loader"></i>
-          </button>
-          <div className="title">Loading</div>
-        </div>
+        {loggedIn && (
+          <div class="navButton  signOutBtn" onClick={handleSignOut}>
+            <button className="box">
+              <i class="fa-duotone fa-solid fa-loader"></i>
+            </button>
+            <div className="title">SignOut</div>
+          </div>
+        )}
       </div>
     </>
   );

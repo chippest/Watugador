@@ -7,9 +7,9 @@ import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const { loggedIn, setLoggedIn, setCurrentUser, setChangingPage, setLoading } =
-    useApp();
+  const { loggedIn, setLoggedIn, setCurrentUser, setChangingPage } = useApp();
 
+  const [loading, setLoading] = useState(false);
   const [lEmail, setLEmail] = useState("");
   const [lPassword, setLPassword] = useState("");
 
@@ -28,6 +28,7 @@ export function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       await signInWithEmailAndPassword(auth, lEmail, lPassword);
       console.log(auth.currentUser.email);
       // Fetch additional data from Firestore
@@ -46,6 +47,8 @@ export function Login() {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -79,8 +82,8 @@ export function Login() {
             />
             <span class="inpBDR"></span>
           </div>
-          <button type="submit">
-            <span>Login</span>
+          <button type="submit" className={loading ? "btnDis" : ""}>
+            <span>{loading ? "Logging In" : "Login"}</span>
           </button>
         </form>
         <div className="design">
