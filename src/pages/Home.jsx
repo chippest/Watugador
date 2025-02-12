@@ -3,11 +3,12 @@ import { useApp } from "../contexts/AppContext";
 import "./css/home.css";
 
 export function Home() {
-  const { loggedIn, setLoggedIn } = useApp();
+  const { loggedIn, setLoggedIn, currentUser } = useApp();
 
   return loggedIn ? (
     <>
-      <div className="home">Home</div>
+      <div className="home">{currentUser.name}</div>
+      <img src={currentUser.avatar} alt="" />
     </>
   ) : (
     <>

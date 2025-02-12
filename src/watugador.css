@@ -17,15 +17,9 @@
     padding: 1rem;
     width: 95vw;
     height: 80%;
-
+    overflow: hidden;
     * {
       transition: 0.2s all;
-    }
-
-    &.changing {
-      * {
-        opacity: 0;
-      }
     }
   }
 
@@ -33,5 +27,13 @@
     display: flex;
     gap: 1rem;
     height: 8%;
+  }
+
+  > div {
+    &.changing {
+      * {
+        opacity: 0;
+      }
+    }
   }
 }

@@ -5,9 +5,10 @@ import { auth, db } from "../lib/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export function Register() {
-  const { loggedIn, setLoggedIn } = useApp();
+  const { loggedIn, setLoggedIn, setCurrentUser, setChangingPage } = useApp();
 
   const [sEmail, setSEmail] = useState("");
   const [sPassword, setSPassword] = useState("");
@@ -20,6 +21,18 @@ export function Register() {
   const [selectedImage, setSelectedImage] = useState(images[0]);
   const [customImageFile, setCustomImageFile] = useState(null);
   const [inpImage, setInpImage] = useState(null);
+
+  const navigate = useNavigate();
+
+  function handleNavButtonClick(page) {
+    setChangingPage(true);
+    setTimeout(() => {
+      navigate(page);
+    }, 100);
+    setTimeout(() => {
+      setChangingPage(false);
+    }, 200);
+  }
 
   const handleImageClick = (image, index) => {
     setSelectedImage(image);
@@ -84,8 +97,10 @@ export function Register() {
         email: sEmail,
         avatar: avatarUrl,
       };
+      setCurrentUser(userData);
       await setDoc(userDocRef, userData);
-      console.log("User document created with avatar:", avatarUrl);
+      handleNavButtonClick("home");
+      setLoggedIn(true);
     } catch (error) {
       console.error("Error signing up:", error);
     }
@@ -93,7 +108,7 @@ export function Register() {
 
   return (
     <>
-      <div className="signUp">
+      <div className="auth">
         <form onSubmit={handleSignUp}>
           <div className="imgSelect">
             {images.map((image, index) => (
@@ -105,22 +120,22 @@ export function Register() {
                 onClick={() => handleImageClick(image, index)}
                 style={{
                   cursor: "pointer",
-                  border:
-                    selectedImage === image ? "3px solid #4CAF50" : "none",
+                  boxShadow:
+                    selectedImage === image
+                      ? "0 0 5px black, 0 0 25px #564534, 0 0 50px #564534,0 0 100px #564534"
+                      : "none",
                   borderRadius: "5px",
                 }}
               />
             ))}
-            <label htmlFor="img">
-              <img
-                width={"100px"}
-                src={
+            <label htmlFor="img" className={!images[2] ? "select" : "reselect"}>
+              <i
+                className={
                   !images[2]
-                    ? "https://icons-for-free.com/iff/png/512/add+board+new+plus+icon-1320186882821780394.png"
-                    : "https://icons.veryicon.com/png/o/education-technology/learning-to-bully-the-king/reset-14.png"
+                    ? "fa-duotone fa-solid fa-square-plus"
+                    : "fa-duotone fa-solid fa-rotate-left"
                 }
-                alt=""
-              />
+              ></i>
               <input
                 type="file"
                 name=""
@@ -130,47 +145,64 @@ export function Register() {
               />
             </label>
           </div>
-          <input
-            type="text"
-            required
-            value={sName}
-            placeholder="Name"
-            onChange={(e) => {
-              setSName(e.target.value);
-            }}
-          />
-          <input
-            type="text"
-            required
-            value={sUserName}
-            placeholder="Username"
-            onChange={(e) => {
-              setSUserName(e.target.value);
-            }}
-          />
-          <input
-            type="email"
-            name=""
-            required
-            value={sEmail}
-            placeholder="Email"
-            onChange={(e) => {
-              setSEmail(e.target.value);
-            }}
-          />
-          <input
-            type="password"
-            name=""
-            required
-            value={sPassword}
-            placeholder="Password"
-            onChange={(e) => {
-              setSPassword(e.target.value);
-            }}
-          />
-          <button type="submit">SignUp</button>
+          <div className="form-control">
+            <input
+              type="text"
+              required
+              value={sName}
+              placeholder="Name"
+              onChange={(e) => {
+                setSName(e.target.value);
+              }}
+            />
+            <span class="inpBDR"></span>
+          </div>
+          <div className="form-control">
+            <input
+              type="text"
+              required
+              value={sUserName}
+              placeholder="Username"
+              onChange={(e) => {
+                setSUserName(e.target.value);
+              }}
+            />
+            <span class="inpBDR"></span>
+          </div>
+          <div className="form-control">
+            <input
+              type="email"
+              required
+              value={sEmail}
+              placeholder="Email"
+              onChange={(e) => {
+                setSEmail(e.target.value);
+              }}
+            />
+            <span class="inpBDR"></span>
+          </div>
+          <div className="form-control">
+            <input
+              type="password"
+              required
+              value={sPassword}
+              placeholder="Password"
+              onChange={(e) => {
+                setSPassword(e.target.value);
+              }}
+            />
+            <span class="inpBDR"></span>
+          </div>
+          <button type="submit">
+            <span>SignUp</span>
+          </button>
         </form>
-        <div className="design">REGISTER</div>
+        <div className="design">
+          <div class="top">REGISTER</div>
+          <div class="bottom" aria-hidden="true">
+            REGISTER
+          </div>
+        </div>
       </div>
     </>
   );

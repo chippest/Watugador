@@ -1,0 +1,65 @@
+.loading {
+  flex: 1;
+  height: 100%;
+  border-radius: 10px;
+  background: 
+    /* Diagonal slices */ radial-gradient(
+      circle at 100% 50%,
+      #342e27 0% 2%,
+      #564534 3% 5%,
+      transparent 6%
+    ),
+    /* Offset dots */
+      radial-gradient(
+        circle at 0% 50%,
+        #342e27 0% 2%,
+        #564534 3% 5%,
+        transparent 6%
+      ),
+    /* Wave-like pattern */
+      radial-gradient(ellipse at 50% 0%, #ff6464 0% 3%, transparent 4%) 10px
+      10px,
+    /* Scattered elements */
+      radial-gradient(
+        circle at 50% 50%,
+        #342e27 0% 1%,
+        #564534 2% 3%,
+        #ff6464 4% 5%,
+        transparent 6%
+      )
+      20px 20px,
+    /* Background texture */
+      repeating-linear-gradient(
+        45deg,
+        #1a1a1a,
+        #1a1a1a 10px,
+        #242424 10px,
+        #242424 20px
+      );
+  background-size: 50px 50px, 50px 50px, 40px 40px, 60px 60px, 100% 100%;
+  animation: shift 15s linear infinite;
+
+  display: grid;
+  place-content: center;
+  font-size: 5rem;
+  color: #564534;
+  font-weight: bolder;
+
+  > div {
+    grid-area: 1/1/-1/-1;
+    text-shadow: 0 0 2rem #564534;
+
+    &.top {
+      clip-path: polygon(-10% 0%, 110% 0%, 110% 48%, -10% 58%);
+    }
+    &.bottom {
+      clip-path: polygon(-10% 60%, 110% 50%, 110% 100%, 0% 100%);
+      color: transparent;
+      background: -webkit-linear-gradient(177deg, #342e27 53%, #564534 65%);
+      background: linear-gradient(177deg, #342e27 53%, #564534 65%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      transform: translateX(-0.02em);
+    }
+  }
+}

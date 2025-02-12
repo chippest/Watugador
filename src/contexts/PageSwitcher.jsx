@@ -1,4 +1,4 @@
-import { useApp } from "../contexts/AppContext";
+import { useApp } from "./AppContext";
 
 export function PageSwitcher({ page }) {
   const { setCurrentPage } = useApp();
