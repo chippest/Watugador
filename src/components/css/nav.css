@@ -16,12 +16,12 @@
       --bs: #ff76763f;
 
       position: absolute;
-      right: 1rem;
+      right: 0;
     }
 
     &.accountBtn {
       position: absolute;
-      left: 1rem;
+      left: 0;
     }
 
     .box {

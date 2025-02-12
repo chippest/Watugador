@@ -7,8 +7,10 @@ export function Home() {
 
   return loggedIn ? (
     <>
-      <div className="home">{currentUser.name}</div>
-      <img src={currentUser.avatar} alt="" />
+      <div className="home">
+        {currentUser.name}
+        <img src={currentUser.avatar} alt="" />
+      </div>
     </>
   ) : (
     <>
