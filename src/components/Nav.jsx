@@ -117,7 +117,7 @@ export function Nav() {
         {loggedIn && (
           <div class="navButton  signOutBtn" onClick={handleSignOut}>
             <button className="box">
-              <i class="fa-duotone fa-solid fa-loader"></i>
+              <i class="fa-duotone fa-solid fa-right-from-bracket"></i>
             </button>
             <div className="title">SignOut</div>
           </div>
