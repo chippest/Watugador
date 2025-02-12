@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 export function Register() {
   const { loggedIn, setLoggedIn, setCurrentUser, setChangingPage } = useApp();
 
+  const [loading, setLoading] = useState(false);
   const [sEmail, setSEmail] = useState("");
   const [sPassword, setSPassword] = useState("");
   const [sUserName, setSUserName] = useState("");
@@ -55,6 +56,7 @@ export function Register() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         sEmail,
@@ -103,6 +105,8 @@ export function Register() {
       setLoggedIn(true);
     } catch (error) {
       console.error("Error signing up:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -193,8 +197,8 @@ export function Register() {
             />
             <span class="inpBDR"></span>
           </div>
-          <button type="submit">
-            <span>SignUp</span>
+          <button type="submit" className={loading ? "btnDis" : ""}>
+            <span>{loading ? "Registering" : "Register"}</span>
           </button>
         </form>
         <div className="design">
