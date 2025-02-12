@@ -58,6 +58,12 @@ export function Nav() {
         {!loading ? (
           loggedIn ? (
             <>
+              <div class="navButton accountBtn">
+                <button className="box">
+                  <i class="fa-duotone fa-solid fa-user"></i>
+                </button>
+                <div className="title">Profile</div>
+              </div>
               <div
                 class="navButton"
                 onClick={() => {
@@ -70,6 +76,12 @@ export function Nav() {
                   <i class="fa-duotone fa-solid fa-house"></i>
                 </button>
                 <div className="title">Home</div>
+              </div>
+              <div class="navButton  signOutBtn" onClick={handleSignOut}>
+                <button className="box">
+                  <i class="fa-duotone fa-solid fa-right-from-bracket"></i>
+                </button>
+                <div className="title">SignOut</div>
               </div>
             </>
           ) : (
@@ -113,14 +125,6 @@ export function Nav() {
               <div className="title">Loading</div>
             </div>
           </>
-        )}
-        {loggedIn && (
-          <div class="navButton  signOutBtn" onClick={handleSignOut}>
-            <button className="box">
-              <i class="fa-duotone fa-solid fa-right-from-bracket"></i>
-            </button>
-            <div className="title">SignOut</div>
-          </div>
         )}
       </div>
     </>
