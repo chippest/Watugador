@@ -22,17 +22,6 @@
     &.accountBtn {
       position: absolute;
       left: 1rem;
-
-      .box {
-        padding: 0.1rem;
-        justify-content: center;
-        img {
-          width: 80%;
-          object-fit: cover;
-          aspect-ratio: 1/1;
-          border-radius: 10px;
-        }
-      }
     }
 
     .box {
