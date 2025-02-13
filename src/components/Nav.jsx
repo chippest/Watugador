@@ -9,6 +9,8 @@ export function Nav() {
   const {
     loggedIn,
     setLoggedIn,
+    loggingIn,
+    setLoggingIn,
     currentUser,
     setCurrentUser,
     currentPage,
@@ -28,6 +30,7 @@ export function Nav() {
     }, 100);
     setTimeout(() => {
       setChangingPage(false);
+      setLoggingIn(false);
     }, 200);
   }
 
@@ -42,6 +45,7 @@ export function Nav() {
   const handleSignOut = async (e) => {
     e.preventDefault();
     try {
+      setLoggingIn(true);
       await signOut(auth);
       console.log(auth.currentUser?.email);
       setCurrentUser(null);
@@ -54,7 +58,7 @@ export function Nav() {
 
   return (
     <>
-      <div className={changingPage ? "nav changing" : "nav"}>
+      <div className={changingPage && loggingIn ? "nav changing" : "nav"}>
         {!loading ? (
           loggedIn ? (
             <>
@@ -88,7 +92,7 @@ export function Nav() {
                     currentPage === "Library" ? "box hoveredNav" : "box"
                   }
                 >
-                  <i class="fa-duotone fa-solid fa-house"></i>
+                  <i class="fa-duotone fa-solid fa-films"></i>
                 </button>
                 <div className="title">Library</div>
               </div>

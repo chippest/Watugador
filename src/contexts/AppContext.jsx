@@ -5,6 +5,7 @@ const AppContext = createContext();
 
 export function AppProvider({ children }) {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loggingIn, setLoggingIn] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
   const [changingPage, setChangingPage] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -19,6 +20,8 @@ export function AppProvider({ children }) {
       value={{
         loggedIn,
         setLoggedIn,
+        loggingIn,
+        setLoggingIn,
         currentPage,
         setCurrentPage,
         changingPage,

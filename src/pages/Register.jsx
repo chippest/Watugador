@@ -8,7 +8,13 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export function Register() {
-  const { loggedIn, setLoggedIn, setCurrentUser, setChangingPage } = useApp();
+  const {
+    loggedIn,
+    setLoggingIn,
+    setLoggedIn,
+    setCurrentUser,
+    setChangingPage,
+  } = useApp();
 
   const [loading, setLoading] = useState(false);
   const [sEmail, setSEmail] = useState("");
@@ -32,6 +38,7 @@ export function Register() {
     }, 100);
     setTimeout(() => {
       setChangingPage(false);
+      setLoggingIn(false);
     }, 200);
   }
 
@@ -56,6 +63,7 @@ export function Register() {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
+      setLoggingIn(true);
       setLoading(true);
       const userCredential = await createUserWithEmailAndPassword(
         auth,

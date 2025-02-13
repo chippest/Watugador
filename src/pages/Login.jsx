@@ -7,7 +7,13 @@ import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
-  const { loggedIn, setLoggedIn, setCurrentUser, setChangingPage } = useApp();
+  const {
+    loggedIn,
+    setLoggingIn,
+    setLoggedIn,
+    setCurrentUser,
+    setChangingPage,
+  } = useApp();
 
   const [loading, setLoading] = useState(false);
   const [lEmail, setLEmail] = useState("");
@@ -22,12 +28,14 @@ export function Login() {
     }, 100);
     setTimeout(() => {
       setChangingPage(false);
+      setLoggingIn(false);
     }, 200);
   }
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      setLoggingIn(true);
       setLoading(true);
       await signInWithEmailAndPassword(auth, lEmail, lPassword);
       console.log(auth.currentUser.email);
