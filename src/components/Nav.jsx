@@ -77,6 +77,21 @@ export function Nav() {
                 </button>
                 <div className="title">Home</div>
               </div>
+              <div
+                class="navButton"
+                onClick={() => {
+                  handleNavButtonClick("library");
+                }}
+              >
+                <button
+                  className={
+                    currentPage === "Library" ? "box hoveredNav" : "box"
+                  }
+                >
+                  <i class="fa-duotone fa-solid fa-house"></i>
+                </button>
+                <div className="title">Library</div>
+              </div>
               <div class="navButton  signOutBtn" onClick={handleSignOut}>
                 <button className="box">
                   <i class="fa-duotone fa-solid fa-right-from-bracket"></i>

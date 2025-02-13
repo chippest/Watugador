@@ -18,6 +18,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "./lib/firebase";
 import { doc, getDoc } from "firebase/firestore";
 import { Loading } from "./pages/Loading";
+import { Library } from "./pages/Library";
 
 export function Watugador() {
   const {
@@ -88,6 +89,10 @@ export function Watugador() {
               />
               <Route path="login" element={<PageSwitcher page={"Login"} />} />
               <Route path="home" element={<PageSwitcher page={"Home"} />} />
+              <Route
+                path="library"
+                element={<PageSwitcher page={"Library"} />}
+              />
               <Route path="pic" element={<ImageSelectionForm />} />
             </Routes>
             {!loading ? (
@@ -98,6 +103,10 @@ export function Watugador() {
               ) : currentPage === "Login" ? (
                 <>
                   <Login />
+                </>
+              ) : currentPage === "Library" ? (
+                <>
+                  <Library />
                 </>
               ) : (
                 currentPage === "Register" && (
